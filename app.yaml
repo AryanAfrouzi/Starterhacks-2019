@@ -1,0 +1,14 @@
+application: byte-mail-backend
+version: v0.1
+module: default
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /.*
+  script: main.app
+
+libraries:
+- name: ssl
+  version: latest
