@@ -45,7 +45,7 @@ def recordIp():
 
 @app.route('/iplist', methods=['GET'])
 def getList():
-    return ", ".join([x[0] for x in getlist()])
+    return ", ".join([x[0] for x in getlist()].remove(request.remote_addr))
 
 
 @app.errorhandler(500)
