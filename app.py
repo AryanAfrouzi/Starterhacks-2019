@@ -1,4 +1,4 @@
-from tkinter import *
+from Tkinter import *
 from time import *
 import math
 import sys
@@ -14,9 +14,7 @@ fields=("To", "Subject", "Message")
 
 emails=[]
 buttons=[]
-
-for email in emails:
-    buttons.append(0)
+    
 
 
 #get the entries in the field
@@ -159,15 +157,15 @@ def mailInbox():
     global buttons
     
     inboxWindow = Toplevel(root)
-    width = math.floor(inboxWindow.winfo_screenwidth()/2)
-    height = math.floor(inboxWindow.winfo_screenheight()/1.5)
+    width = 400
+    height =400
     inboxWindow.geometry('%sx%s' % (width, height))
     
     canvas = Canvas(inboxWindow, bg="white")
     canvas.pack(expand=YES, fill=BOTH)
     
     for email in emails:
-        
+        buttons.append(0)
         a=emails.index(email)
         canvas.create_rectangle(2, (emails.index(email))*100+2, width-3, ((emails.index(email)+1)*100)+2, outline="red", width=1)
         canvas.create_text(100, (((emails.index(email))*100+2)+(((emails.index(email)+1)*100)+2))/2, text="From: " + email[0] + "\n" + "Subject: " + email[1], font=("Helvetica", 20), anchor=W)
@@ -176,7 +174,7 @@ def mailInbox():
 
 def readMail():
     mailWindow = Toplevel(root)
-    mailWindow.geometry("1000x600")
+    mailWindow.geometry("400x400")
 
     label = Label(mailWindow, text=email[2])
     label.pack()
@@ -192,8 +190,8 @@ if __name__ == '__main__':
 
    root = Tk()
 
-   width2 = math.floor(root.winfo_screenwidth()/2)
-   height2 = math.floor(root.winfo_screenheight()/1.5)
+   width2 = 400
+   height2 = 400
    root.geometry('%sx%s' % (width2, height2))
 
    #creation of an instance
@@ -215,4 +213,3 @@ if __name__ == '__main__':
    button2 = Button(root, text="Send", background="yellow", command=(lambda e=ents: sendm(e)))
    button2.pack(in_=top, side=LEFT, padx=5, pady=5)
    root.mainloop()
-
