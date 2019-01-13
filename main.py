@@ -35,7 +35,7 @@ def recordIp():
     except:
         indx = -1
 
-    if index == -1:
+    if indx == -1:
         ipList.append([senderIP, time.time()])
         return 'Success', 200 
     else:
