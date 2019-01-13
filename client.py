@@ -21,10 +21,9 @@ def forwardThread():
         print("Data received, proceeding to forward..")
         print("Data = "+str(data.decode()))
         unSampledIPlist = requests.get('https://byte-mail-backend.appspot.com/iplist').text.split(', ')
-        unSampledIPlist = [str(i) for i in unSampledIPlist]
 
         try:
-            unSampledIPlist.remove(address)
+            unSampledIPlist.remove(address[0])
         except:
             pass
 
