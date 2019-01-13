@@ -1,9 +1,10 @@
-application: byte-mail-backend
-version: v0.1
 module: default
 runtime: python27
 api_version: 1
 threadsafe: yes
+
+builtins:
+- remote_api: on
 
 handlers:
 - url: /.*

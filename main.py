@@ -14,6 +14,14 @@ requests_toolbelt.adapters.appengine.monkeypatch()
 app = Flask(__name__)
 flask_cors.CORS(app)
 
+def getlist():
+    global ipList
+    tipList = ipList[:]
+    for user in tipList:
+        if time.time()-user[1] >= 300:
+            ipList.remove(user)
+    return ipList
+
 @app.route('/addip', methods=['POST', 'PUT'])
 def recordIp():
     
@@ -21,8 +29,8 @@ def recordIp():
 
     senderIP = request.remote_addr
 
-    if senderIP not in ipList:
-        ipList.append(senderIP)
+    if senderIP not in [x[0] for x in ipList]:
+        ipList.append([senderIP, time.time()])
         return 'Success', 200 
     else:
         return 'Already Added', 500 
@@ -30,8 +38,7 @@ def recordIp():
 
 @app.route('/iplist', methods=['GET'])
 def getList():
-    global ipList
-    return ipList
+    return ", ".join([x[0] for x in getlist()])
 
 
 @app.errorhandler(500)
