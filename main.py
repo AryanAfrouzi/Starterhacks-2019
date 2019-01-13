@@ -29,11 +29,18 @@ def recordIp():
 
     senderIP = request.remote_addr
 
-    if senderIP not in [x[0] for x in ipList]:
+    ips = [x[0] for x in ipList]
+    try:
+        indx = ips.index('senderIP')
+    except:
+        indx = -1
+
+    if index == -1:
         ipList.append([senderIP, time.time()])
         return 'Success', 200 
     else:
-        return 'Already Added', 500 
+        ipList[indx] = [senderIP, time.time()]
+        return 'Updated Record', 200 
 
 
 @app.route('/iplist', methods=['GET'])
