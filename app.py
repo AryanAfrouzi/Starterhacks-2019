@@ -8,15 +8,13 @@ import requests
 import random
 import time
 
-mybytemail = 'test@bmail'
+mybytemail = 'cristian@bmail.com'
 
 fields=("To", "Subject", "Message")
 
 emails=[]
 buttons=[]
-
-for email in emails:
-    buttons.append(0)
+    
 
 
 #get the entries in the field
@@ -167,18 +165,18 @@ def mailInbox():
     canvas.pack(expand=YES, fill=BOTH)
     
     for email in emails:
-        
+        buttons.append(0)
         a=emails.index(email)
         canvas.create_rectangle(2, (emails.index(email))*100+2, width-3, ((emails.index(email)+1)*100)+2, outline="red", width=1)
         canvas.create_text(100, (((emails.index(email))*100+2)+(((emails.index(email)+1)*100)+2))/2, text="From: " + email[0] + "\n" + "Subject: " + email[1], font=("Helvetica", 20), anchor=W)
         buttons[a] = Button(canvas, text="View Mail", anchor=E, command=readMail)
-        button.pack(pady=37)
+        buttons[a].pack(pady=37)
 
 def readMail():
     mailWindow = Toplevel(root)
     mailWindow.geometry("400x400")
 
-    label = Label(mailWindow, text=email[2])
+    label = Label(mailWindow, text=emails[2])
     label.pack()
 
 
@@ -215,3 +213,4 @@ if __name__ == '__main__':
    button2 = Button(root, text="Send", background="yellow", command=(lambda e=ents: sendm(e)))
    button2.pack(in_=top, side=LEFT, padx=5, pady=5)
    root.mainloop()
+
