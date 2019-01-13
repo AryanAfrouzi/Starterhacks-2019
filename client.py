@@ -52,8 +52,9 @@ def forwardThread():
         print('Done forwarding.')
 
 def keepRegistered():
-    requests.post('https://byte-mail-backend.appspot.com/addip')
-    time.sleep(270)
+    while True:
+        requests.post('https://byte-mail-backend.appspot.com/addip')
+        time.sleep(270)
 
 t1 = threading.Thread(target=forwardThread)
 t1.start()
