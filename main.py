@@ -31,7 +31,7 @@ def recordIp():
 
     ips = [x[0] for x in ipList]
     try:
-        indx = ips.index('senderIP')
+        indx = ips.index(senderIP)
     except:
         indx = -1
 
